@@ -42,20 +42,15 @@ public class PoiWriteExcel {
 								colByName.put(new DataFormatter().formatCellValue(sheet.getRow(0).getCell(i)).toString(), i);
 							}
 						}
-						Cell cell = sheet.getRow(1).getCell(0);
-						cell.setCellValue("Ajay1234");
-						
-//						for (int j = 0; j <cellNum; j++) {
-//							cell = sheet.getRow(rowNum).getCell(j);
-//							if(colByName.get("SCREEENING_ID") == j) {
-//								cell.setCellValue("Ajay");
-//							}
-//							else if(colByName.get("SC_TSP")== j) {
-//								cell.setCellValue(LocalDateTime.now());
-//							}
-//						}
-						file.close();
-						
+						Row row = sheet.createRow(rowNum);
+						for (int j = 0; j <cellNum; j++) {
+							if(colByName.get("SCREEENING_ID") == j) {
+								row.createCell(j).setCellValue("Test123");
+							}
+							else if(colByName.get("SC_TSP")== j) {
+								row.createCell(j).setCellValue(LocalDateTime.now().toString());
+							}
+						}
 						FileOutputStream output = new FileOutputStream(new File("src/main/java/Artifacts/TestData/SD/ScreeningData.xlsx"));
 						workbook.write(output);
 						output.close();
