@@ -1,0 +1,19 @@
+ WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Method 1: Click the upload button first
+        WebElement uploadButton = wait.until(ExpectedConditions.elementToBeClickable(
+            By.xpath("//span[contains(@class, 'slds-file-selector__button')]//lightning-primitive-icon")));
+        
+        // Find the hidden input within the same container
+        WebElement parentContainer = uploadButton.findElement(By.xpath("./ancestor::div[contains(@class, 'slds-file-selector')]"));
+        WebElement fileInput = parentContainer.findElement(By.cssSelector("input[type='file']"));
+        
+        // Make the input visible and interactive
+        js.executeScript(
+            "arguments[0].style.display = 'block'; " +
+            "arguments[0].style.visibility = 'visible'; " +
+            "arguments[0].style.opacity = '1';", fileInput);
+        
+        // Send the file path
+        fileInput.sendKeys(filePath);
