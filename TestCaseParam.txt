@@ -1,0 +1,18 @@
+public TestCaseParam getTempTestCaseParam(TestCaseParam testCaseParam)
+	{
+		TestCaseParam temptestCaseParam= new TestCaseParam();
+		temptestCaseParam.setTestCaseDescription(testCaseParam.getTestCaseDescription());
+		temptestCaseParam.setTestCaseName(testCaseParam.getTestCaseName());
+		temptestCaseParam.setBrowser(testCaseParam.getBrowser());
+		temptestCaseParam.setIteration(testCaseParam.getIteration());
+		temptestCaseParam.setModuleName(testCaseParam.getModuleName());
+		temptestCaseParam.setTestCaseType(testCaseParam.getTestCaseType());
+		
+		
+			if(temptestCaseParam.getTestCaseType()==TestCaseParam.TestCaseType.PREREQ) 
+			{
+				temptestCaseParam.setTestCaseName(testCaseParam.getTestCaseName().replace("_Prereq", ""));
+			}
+			
+			return temptestCaseParam;
+	}
